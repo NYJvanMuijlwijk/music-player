@@ -5,8 +5,12 @@ An offline Android music player for a locally stored music collection, built aro
 ## Language
 
 **Library**:
-All songs on the device that Android's media index exposes to the player.
+All songs in the Library folders that Android's media index exposes to the player.
 _Avoid_: Collection, database, catalog
+
+**Library folder**:
+A folder the user has chosen to make part of the Library, including its subfolders, on every storage volume. By default the only one is `Music/`. Removing one turns its Songs in Queues into Missing songs.
+_Avoid_: Source, scan folder, include folder
 
 **Song**:
 One playable audio file in the Library.
