@@ -2,6 +2,19 @@
 
 Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
 
+## Claude cloud sessions: REST only
+
+Claude's cloud sessions block GitHub's GraphQL API, and every `gh issue …` command below goes through it, so they fail with HTTP 403. Use the REST API through `gh api repos/NYJvanMuijlwijk/music-player/…` instead (`…` below):
+
+- **Create**: `gh api --method POST …/issues -f title='…' -F body=@body.md -f 'labels[]=wayfinder:task'`
+- **Read / list**: `…/issues/<n>`, `…/issues/<n>/comments`, `'…/issues?state=open&labels=<label>&per_page=100'`. The list also returns PRs: drop entries that have `pull_request`.
+- **Map children**: `…/issues/<map>/sub_issues`; add one with `--method POST …/issues/<map>/sub_issues -F sub_issue_id=<db-id>`.
+- **Comment**: `--method POST …/issues/<n>/comments -F body=@comment.md`
+- **Claim**: `--method POST …/issues/<n>/assignees -f "assignees[]=$(gh api user --jq .login)"` (no `@me` in REST).
+- **Close / edit body**: `--method PATCH …/issues/<n> -f state=closed`, or `-F body=@map.md` to rewrite the map.
+
+`-F body=@file` sends a file's contents; write bodies to a file first rather than quoting Markdown inline.
+
 ## Conventions
 
 - **Create an issue**: `gh issue create --title "..." --body "..."`. Use a heredoc for multi-line bodies.
