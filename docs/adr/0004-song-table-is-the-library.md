@@ -6,7 +6,7 @@ After ADR 0003, every file in the Library already has a Song row, so the table i
 
 ## Considered Options
 
-- **Query MediaStore live for browsing**: rejected. Each tap would need to be matched back to a Song before it could join a Queue, and the screens could show a file in the middle of a Syncthing replace that the Library sync hasn't settled yet.
+- **Query MediaStore live for browsing**: rejected. Each tap would need to be matched back to a Song before it could join a Queue, and a Song would vanish from the screens for up to about 15 s during every Syncthing replace, which the Library sync's 30 s wait hides.
 - **SQLDelight**: rejected. Workable, but Room's generated migrations and live queries cover what v1 needs with less hand-written SQL.
 - **JSON files per Queue**: rejected. No transactions across Queues, Songs and playback state, and no way for the Library sync to ask which Songs are in any Queue.
 - **A separate store for playback state**: rejected. It's a few columns per Queue plus one "which Queue is active" row, and switching Queues must save both sides in one transaction.
