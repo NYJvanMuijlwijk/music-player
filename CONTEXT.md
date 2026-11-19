@@ -17,7 +17,7 @@ One playable audio file in the Library.
 _Avoid_: Track, file, item
 
 **Queue**:
-A named, ordered list of Songs with its own playback position. Several Queues exist side by side; playing something new from the Library starts a new one.
+A named, ordered list of Songs that remembers its own current Song, position in that Song, Shuffle and repeat. Several Queues exist side by side; playing something new from the Library starts a new one.
 _Avoid_: Playlist, play queue, now playing
 
 **Active Queue**:
@@ -25,8 +25,16 @@ The one Queue currently loaded for playback. It is the only Queue that controls 
 _Avoid_: Current queue, playing queue, now playing
 
 **Pinned Queue**:
-A Queue the user has marked to keep, exempt from automatic cleanup.
+A Queue the user has marked to keep, exempt from automatic cleanup. Unpinned Queues are cleaned up, least recently played first, once there would be more than 20 of them; the Active Queue never is.
 _Avoid_: Saved queue, favourite queue
+
+**Play order**:
+The order a Queue actually plays in. The same as the Queue's own order unless Shuffle is on.
+_Avoid_: Shuffle order, playback order
+
+**Shuffle**:
+An on/off play mode of each Queue: it plays through a shuffled Play order without changing the Queue's own order, and turning it off goes back to that order.
+_Avoid_: Random, mix, shuffle mode
 
 **Missing song**:
 A Song in a Queue whose file can't currently be found in the Library. It stays in the Queue, marked, until the user removes it or it is found again.
