@@ -13,8 +13,12 @@ A folder the user has chosen to make part of the Library, including its subfolde
 _Avoid_: Source, scan folder, include folder
 
 **Song**:
-One playable audio file in the Library.
+One piece of music in the Library, played from one audio file. It keeps its identity when its file is moved or retagged, so Queues keep pointing at it.
 _Avoid_: Track, file, item
+
+**Library sync**:
+Matching what Android's media index currently lists to the Songs the app already knows, run at start and whenever the index changes. Files that are moved or retagged stay the same Song. A Song whose file is gone becomes a Missing song, and a Missing song whose file comes back is relinked.
+_Avoid_: Scan, rescan, refresh, import
 
 **Queue**:
 A named, ordered list of Songs that remembers its own current Song, position in that Song and Shuffle. When it reaches its end it starts again from the top, reshuffled if Shuffle is on. Several Queues exist side by side; playing something new from the Library starts a new one.
