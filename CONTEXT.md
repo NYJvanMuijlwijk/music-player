@@ -16,6 +16,10 @@ _Avoid_: Track, file, item
 A named, ordered list of Songs with its own playback position. Several Queues exist side by side; playing something new from the Library starts a new one.
 _Avoid_: Playlist, play queue, now playing
 
+**Active Queue**:
+The one Queue currently loaded for playback. It is the only Queue that controls outside the app (notification, headset, lock screen) can see or act on; switching to another Queue makes that one active.
+_Avoid_: Current queue, playing queue, now playing
+
 **Pinned Queue**:
 A Queue the user has marked to keep, exempt from automatic cleanup.
 _Avoid_: Saved queue, favourite queue
