@@ -17,7 +17,7 @@ One playable audio file in the Library.
 _Avoid_: Track, file, item
 
 **Queue**:
-A named, ordered list of Songs that remembers its own current Song, position in that Song, Shuffle and repeat. Several Queues exist side by side; playing something new from the Library starts a new one.
+A named, ordered list of Songs that remembers its own current Song, position in that Song and Shuffle. When it reaches its end it starts again from the top, reshuffled if Shuffle is on. Several Queues exist side by side; playing something new from the Library starts a new one.
 _Avoid_: Playlist, play queue, now playing
 
 **Active Queue**:
