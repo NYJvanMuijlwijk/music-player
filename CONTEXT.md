@@ -16,6 +16,14 @@ _Avoid_: Source, scan folder, include folder
 One piece of music in the Library, played from one audio file. It keeps its identity when its file is moved or retagged, so Queues keep pointing at it.
 _Avoid_: Track, file, item
 
+**Cover**:
+The picture shown for a Song: the image file in its folder, or else the picture embedded in its file. An album shows the Cover of its first Song.
+_Avoid_: Artwork, album art, thumbnail
+
+**Folder access**:
+The user's one-time permission for the app to read every file in a Library folder, which the music permission doesn't cover. Covers and lyrics files are read through it.
+_Avoid_: Folder grant, storage permission, SAF access
+
 **Library sync**:
 Matching what Android's media index currently lists to the Songs the app already knows, run at start and whenever the index changes. Files that are moved or retagged stay the same Song. A Song whose file is gone becomes a Missing song, and a Missing song whose file comes back is relinked.
 _Avoid_: Scan, rescan, refresh, import

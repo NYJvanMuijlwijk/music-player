@@ -25,6 +25,7 @@ Decided in issue #9 ("Storage: database and schema for Queues and playback state
 | `track_number`, `disc_number`, `year` | integer, nullable | Tags |
 | `duration_ms` | integer | |
 | `file_modified` | integer | MediaStore `DATE_MODIFIED` when tags and MD5 were last read, so a sync can skip unchanged files |
+| `cover_source`, `cover_key`, `cover_modified` | text, text, integer, all nullable | Where the Song's Cover comes from and a hash of the picture. See `covers.md` |
 
 Indexes: `media_store_id`; path (unique); `flac_audio_md5`; `album_artist, album`; `artist`; `title`. These cover browsing by album, artist, folder and song, plain text search, and the Library sync's matching steps.
 
