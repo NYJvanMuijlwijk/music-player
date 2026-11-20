@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Music Player Screens</title>
 <!-- PROTOTYPE, throwaway. Answers "Screens and navigation for v1" (issue #19).
-     Three navigation variants of the same app on one page: #tabs, #swipe, #player
-     (or ?variant=A|B|C when opened as a file). Sample data is invented; nothing is saved. -->
+     Four navigation variants of the same app on one page: #tabs, #swipe, #player, #three
+     (or ?variant=A|B|C|D when opened as a file). D is the mix Niek chose. Sample data is invented; nothing is saved. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -42,7 +42,7 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .gbar i{width:110px;height:4px;border-radius:2px;background:var(--ink);opacity:.45}
 .app{flex:1;position:relative;display:flex;flex-direction:column;overflow:hidden;min-height:0}
 .body{flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;min-height:0}
-.va{--bg:#1a1211;--s1:#251a19;--s2:#352826;--ink:#f2dfdb;--mute:#d6c1bd;--acc:#ffb4a6;--on-acc:#5c1a10;--cont:#7a3125;--on-cont:#ffdad3;--line:#4f413e}
+.va,.vd{--bg:#1a1211;--s1:#251a19;--s2:#352826;--ink:#f2dfdb;--mute:#d6c1bd;--acc:#ffb4a6;--on-acc:#5c1a10;--cont:#7a3125;--on-cont:#ffdad3;--line:#4f413e}
 .vb{--bg:#fff;--s1:#f2f4f7;--s2:#e5e9ef;--ink:#16191d;--mute:#5d6571;--acc:#1b5fd1;--on-acc:#fff;--cont:#dde7fb;--on-cont:#0c3b8c;--line:#e4e7ec}
 .ic{width:24px;height:24px;fill:currentColor;flex:none}
 .ic.tiny{width:16px;height:16px;vertical-align:-3px;margin-left:4px;opacity:.8}
@@ -119,9 +119,9 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .ahead p{margin:4px 0 0;color:var(--mute);font-size:14px}
 .ahead a{color:var(--acc);cursor:pointer}
 .ah{width:112px;font-size:40px;border-radius:12px}
-.va .ahead,.vc .ahead{flex-direction:column;text-align:center}
-.va .ah,.vc .ah{width:56%;font-size:60px;border-radius:16px}
-.va .acts,.vc .acts{justify-content:center}
+.va .ahead,.vc .ahead,.vd .ahead{flex-direction:column;text-align:center}
+.va .ah,.vc .ah,.vd .ah{width:56%;font-size:60px;border-radius:16px}
+.va .acts,.vc .acts,.vd .acts{justify-content:center}
 .pav{width:96px;height:96px;border-radius:50%;background:var(--s2);display:grid;place-items:center;color:var(--mute);flex:none}
 .pav .ic{width:48px;height:48px}
 .lhead{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 6px;color:var(--mute);font-size:14px}
@@ -230,6 +230,14 @@ button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 .tile b{font-size:16px;font-weight:500}
 .tile small{color:var(--mute);font-size:13px}
 .tile .ic{fill:var(--acc)}
+/* D: three tabs, Niek's mix */
+.dnav{display:flex;flex:none;background:var(--s1);height:62px;border-top:1px solid var(--line)}
+.dn{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11.5px;font-weight:500;color:var(--mute)}
+.dn.on{color:var(--acc)}
+.strip{display:flex;align-items:center;gap:10px;padding:2px 2px 2px 12px;background:var(--s2);position:relative;flex:none;cursor:pointer}
+.strip .t1{font-size:14px}
+.strip .t2{font-size:12.5px}
+.s32{width:32px;font-size:12px;border-radius:5px}
 /* overlays */
 .scrim{position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:40}
 .scrim.zs{z-index:50}
@@ -310,8 +318,9 @@ body.show-notes #notes{inset:0 0 58px}
 <body>
 <main id="stage">
   <section id="notes">
-    <h1>v1 screens: three ways around the app</h1>
-    <p>A rough, clickable phone for <a href="https://github.com/NYJvanMuijlwijk/music-player/issues/19">Screens and navigation for v1</a>. Same app and same songs in each layout. Flip with the arrows below, then say which one you'd keep, or which parts of each.</p>
+    <h1>v1 screens and navigation</h1>
+    <p>A rough, clickable phone for <a href="https://github.com/NYJvanMuijlwijk/music-player/issues/19">Screens and navigation for v1</a>. Same app and same songs in each layout. D is the mix you described; A to C are the first three options. Flip with the arrows below.</p>
+    <div class="vn" data-v="D"><h2>D · Three tabs (your mix)</h2><p>A small bar at the bottom with Queues, Player and Library, all in thumb range. The Library has tabs at the top for folders, albums, artists and songs. On the Queues and Library tabs, a slim strip above the bar shows what's playing; tap it for the Player.</p></div>
     <div class="vn" data-v="A"><h2>A · Two tabs</h2><p>A bottom bar with Library and Queues. A mini-player sits above it and opens the now-playing screen. The Library has its own tabs for songs, albums, artists and folders. Closest to most Android music apps.</p></div>
     <div class="vn" data-v="B"><h2>B · Swipe tabs</h2><p>One row of tabs you can swipe through: Queues, Folders, Albums, Artists, Songs. The Queues tab shows one Queue at a time, with chips to switch. Light and dense, in the spirit of Musicolet.</p></div>
     <div class="vn" data-v="C"><h2>C · Player first</h2><p>Opens on the song that's playing, with its Queue underneath. Queues slide in from the left, and the Library opens from the search button. Fewest screens.</p></div>
@@ -538,6 +547,7 @@ function deleteQueue(q) { S.queues = S.queues.filter(x => x !== q); if (S.active
 function purge(id) {
   const keep = r => !(r.t === 'queue' && r.id === id);
   UA.st.library = UA.st.library.filter(keep); UA.st.queues = UA.st.queues.filter(keep);
+  UD.st.library = UD.st.library.filter(keep); UD.st.queues = UD.st.queues.filter(keep);
   if (UB.qsel === id) UB.qsel = null;
   if (UB.over) { UB.over = UB.over.filter(keep); if (!UB.over.length) UB.over = null; }
   if (UC.over) { UC.over = UC.over.filter(keep); if (!UC.over.length) UC.over = null; }
@@ -728,7 +738,7 @@ const routeHead = v => v.search ? `<header class="top tb"><button class="ib" dat
 const libRoot = (t, cols) => t === 'songs' ? vSongs() : t === 'albums' ? vAlbumGrid(cols) : t === 'artists' ? vArtists() : vFolderRoot();
 
 /* ---------- variant A: two tabs ---------- */
-const UA = {}, UB = {}, UC = {};
+const UA = {}, UB = {}, UC = {}, UD = {};
 const VA = {
   render() {
     const st = UA.st[UA.tab], r = st[st.length - 1];
@@ -825,6 +835,42 @@ const VC = {
   snackB() { return 16; }
 };
 
+/* ---------- variant D: three tabs (Niek's mix of A and B) ---------- */
+const VD = {
+  render() {
+    const q = aq(), s = curSong(q), st = UD.st[UD.tab], r = st[st.length - 1];
+    let head, body, k = 'player';
+    if (UD.tab === 'player') {
+      if (s) {
+        const list = seq(q), at = list.indexOf(q.cur);
+        head = `<header class="top tb"><button class="ib" data-a="open-active" aria-label="Open Queue">${I('queue')}</button><div class="npfrom" data-a="open-active"><small>Playing from</small><b>${esc(q.name)}</b></div><button class="ib" data-a="song-menu" data-sid="${s.id}" aria-label="More">${I('more')}</button></header>`;
+        body = npCore(q, s) + `<div class="npfoot"><button class="chip" data-a="open-active">${I('queue')}${esc(q.name)} · ${at + 1} of ${list.length}</button></div>`;
+      } else {
+        head = '<header class="top"><h1>Player</h1></header>';
+        body = `<div class="empty"><b>Nothing playing</b>Play something from your Library and it shows up here.<br><br><button class="btn" data-a="d-tab" data-v="library">${I('library')}Open Library</button></div>`;
+      }
+    } else if (r) { const v = routeView(r, 2); head = routeHead(v); body = v.body; k = rkey(r); }
+    else if (UD.tab === 'library') {
+      head = `<header class="top"><h1>Library</h1><button class="ib" data-a="go" data-t="search" aria-label="Search">${I('search')}</button><button class="ib" data-a="go" data-t="settings" aria-label="Settings">${I('settings')}</button></header><nav class="ltabs">${['folders', 'albums', 'artists', 'songs'].map(t => `<button class="lt${UD.lib === t ? ' on' : ''}" data-a="d-lib" data-v="${t}">${cap(t)}</button>`).join('')}</nav>`;
+      body = libRoot(UD.lib, 2); k = 'lib-' + UD.lib;
+    } else {
+      head = `<header class="top"><h1>Queues</h1><button class="ib" data-a="go" data-t="settings" aria-label="Settings">${I('settings')}</button></header>`;
+      body = VA.queues(); k = 'queues';
+    }
+    const strip = UD.tab !== 'player' && s ? `<div class="strip" data-a="d-tab" data-v="player">${art(s.album, 's32')}<div class="rt"><div class="t1">${esc(s.title)}</div><div class="t2">${esc(s.artist)}</div></div><button class="ib" data-a="toggle" aria-label="${S.playing ? 'Pause' : 'Play'}">${I(S.playing ? 'pause' : 'play')}</button><div class="prog"><i data-prog></i></div></div>` : '';
+    return `${head}<div class="body" data-sk="d:${UD.tab}:${esc(k)}">${body}</div>${strip}<nav class="dnav">${[['queues', 'Queues', 'queue'], ['player', 'Player', 'note'], ['library', 'Library', 'library']].map(([t, l, ic]) => `<button class="dn${UD.tab === t ? ' on' : ''}" data-a="d-tab" data-v="${t}">${I(ic)}${l}</button>`).join('')}</nav>`;
+  },
+  go(r) {
+    if (r.t === 'queue') { if (UD.tab === 'queues') UD.st.queues.push(r); else { UD.tab = 'queues'; UD.st.queues = [r]; } return; }
+    if (UD.tab === 'player') UD.tab = 'library';
+    UD.st[UD.tab].push(r);
+  },
+  back() { UD.st[UD.tab].pop(); },
+  showQueue(id) { UD.tab = 'queues'; UD.st.queues = [{ t: 'queue', id }]; },
+  afterPlay() {},
+  snackB() { return 70 + (UD.tab !== 'player' && aq() ? 52 : 0); }
+};
+
 /* ---------- first run ---------- */
 function onboard() {
   if (S.onb === 'sync') return `<div class="onb"><div class="logo">${I('note')}</div><h1>Reading your Library</h1><p>Found ${pl(libSongs().length, 'song')} in Music/</p><div class="bar"><i></i></div></div>`;
@@ -845,15 +891,16 @@ function dialogHtml() {
 }
 
 /* ---------- render loop ---------- */
-const ORDER = ['A', 'B', 'C'];
-const VARS = { A: { name: 'Two tabs', hash: 'tabs' }, B: { name: 'Swipe tabs', hash: 'swipe' }, C: { name: 'Player first', hash: 'player' } };
-let VK = 'A', drag = null, seeking = false, suppress = false, lpTimer = null, lpXY = null;
-const V = () => ({ A: VA, B: VB, C: VC })[VK];
+const ORDER = ['A', 'B', 'C', 'D'];
+const VARS = { A: { name: 'Two tabs', hash: 'tabs' }, B: { name: 'Swipe tabs', hash: 'swipe' }, C: { name: 'Player first', hash: 'player' }, D: { name: 'Three tabs', hash: 'three' } };
+let VK = 'D', drag = null, seeking = false, suppress = false, lpTimer = null, lpXY = null;
+const V = () => ({ A: VA, B: VB, C: VC, D: VD })[VK];
 const cVars = h => `--h:${h};--bg:hsl(${h} 30% 10%);--s1:hsl(${h} 26% 15%);--s2:hsl(${h} 24% 21%);--ink:#fff;--mute:hsl(${h} 18% 76%);--acc:hsl(${h} 90% 80%);--on-acc:hsl(${h} 60% 14%);--cont:hsl(${h} 38% 30%);--on-cont:hsl(${h} 90% 93%);--line:hsl(${h} 18% 26%)`;
 function resetUI() {
   Object.assign(UA, { tab: 'library', lib: 'albums', st: { library: [], queues: [] } });
   Object.assign(UB, { tab: 0, qsel: null, st: [[], [], [], [], []], over: null });
   Object.assign(UC, { drawer: false, lib: null, over: null, toUp: false });
+  Object.assign(UD, { tab: 'player', lib: 'folders', st: { queues: [], player: [], library: [] } });
   O.sheet = O.dialog = O.sys = O.sel = null; O.np = false; SQ = '';
 }
 function render() {
@@ -901,11 +948,11 @@ function tickDom(instant) {
   }
 }
 function setVariant(x) {
-  VK = typeof x === 'number' ? ORDER[(ORDER.indexOf(VK) + x + 3) % 3] : x;
+  VK = typeof x === 'number' ? ORDER[(ORDER.indexOf(VK) + x + ORDER.length) % ORDER.length] : x;
   O.sheet = O.dialog = O.sel = null; O.np = false;
   try { history.replaceState(null, '', '#' + VARS[VK].hash); } catch (e) {}
 }
-const fromUrl = () => { const h = location.hash.slice(1), qv = (new URLSearchParams(location.search).get('variant') || '').toUpperCase(); return ORDER.find(k => VARS[k].hash === h) || (ORDER.includes(qv) ? qv : 'A'); };
+const fromUrl = () => { const h = location.hash.slice(1), qv = (new URLSearchParams(location.search).get('variant') || '').toUpperCase(); return ORDER.find(k => VARS[k].hash === h) || (ORDER.includes(qv) ? qv : 'D'); };
 function selXfer(copy) {
   const q = Q(O.sel.q), ids = [...O.sel.set];
   if (!ids.length) { snack('Select some songs first'); return; }
@@ -918,6 +965,8 @@ const ACT = {
   'back': () => V().back(),
   'a-tab': d => { if (UA.tab === d.v) UA.st[d.v] = []; UA.tab = d.v; O.np = false; },
   'a-lib': d => { UA.lib = d.v; },
+  'd-tab': d => { if (UD.tab === d.v) UD.st[d.v] = []; UD.tab = d.v; },
+  'd-lib': d => { UD.lib = d.v; },
   'b-tab': d => { UB.tab = +d.v; const p = $('.pager'); if (p) p.scrollTo({ left: UB.tab * p.clientWidth, behavior: 'smooth' }); markTabsB(); return 'keep'; },
   'b-qsel': d => { UB.qsel = d.q; O.sel = null; },
   'c-drawer': () => { UC.drawer = true; JUST.add('drawer'); },
@@ -972,7 +1021,7 @@ const ACT = {
   'perm-deny': () => { O.sys = null; S.onb = 'denied'; },
   'v-prev': () => setVariant(-1),
   'v-next': () => setVariant(1),
-  'fresh': () => { S.queues = []; S.activeId = null; S.playing = false; S.grant = false; S.lyrOn = false; S.folders = ['Music/']; refreshMissing(); resetUI(); O.snack = null; S.onb = 'welcome'; },
+  'fresh': () => { S.queues = []; S.activeId = null; S.playing = false; S.grant = false; S.lyrOn = false; S.folders = ['Music/']; refreshMissing(); resetUI(); UD.tab = 'library'; O.snack = null; S.onb = 'welcome'; },
   'reset': () => { seedState(); resetUI(); O.snack = null; },
   'speed': () => { S.speed = S.speed > 1 ? 1 : 20; },
   'notes': () => { document.body.classList.toggle('show-notes'); return 'keep'; }
