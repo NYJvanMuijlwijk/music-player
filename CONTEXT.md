@@ -16,6 +16,14 @@ _Avoid_: Source, scan folder, include folder
 One piece of music in the Library, played from one audio file. It keeps its identity when its file is moved or retagged, so Queues keep pointing at it.
 _Avoid_: Track, file, item
 
+**Artist**:
+A name in the artist tags of the Library's Songs. Names that differ only in letter case are the same Artist. A Song credited to "X feat. Y" belongs to the Artist "X feat. Y".
+_Avoid_: Performer, band
+
+**Album**:
+The Songs that share an album name and an album artist (or, without one, an artist), ignoring letter case. Two albums with the same name by different artists are different Albums.
+_Avoid_: Record, release, disc
+
 **Cover**:
 The picture shown for a Song: the image file in its folder, or else the picture embedded in its file. An album shows the Cover of its first Song.
 _Avoid_: Artwork, album art, thumbnail
